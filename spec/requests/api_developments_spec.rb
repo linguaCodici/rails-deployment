@@ -45,15 +45,26 @@ RSpec.describe "ApiDevelopments", type: :request do
     end
   end
 
-  describe "http" do
-    before(:each) { Bar.delete_all }
-    after(:each) { Bar.delete_all }
+  # describe "http" do
+  #   before(:each) { Bar.delete_all }
+  #   after(:each) { Bar.delete_all }
+  #
+  #   base_uri_1 = "http://localhost:3000/api/foos"
+  #   base_uri_2 = "http://localhost:3000/api/bars"
+  #
+  #   it "get request should return ok" do
+  #     (1..3).each.map {|i| Bar.create(:name => "test#{i}")}
+  #     res = HTTParty.get(base_uri_1)
+  #     expect(res.code).to eq(200)
+  #     res = HTTParty.get(base_uri_2)
+  #     expect(res.code).to eq(200)
+  #   end
+  #
+  #   it "post request should return created" do
+  #     res = HTTParty.post(base_uri_2, body: {bar: {name: "test2a"}})
+  #     expect(res.code).to eq(201)
+  #   end
+  # end
 
-    it "get request should return ok" do
-      (1..3).each.map {|i| Bar.create(:name => "test#{i}")};
-      response = HTTParty.get("http://localhost:3000/api/foos");
-      expect(response.body).to include("ok")
-  end
-  
-  
+
 end

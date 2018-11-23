@@ -23,7 +23,7 @@ services:
       - MONGO_HOST=mongo:27017
   rake:
     build: .
-    command: ./docker-rake-commands.sh
+    command: docker/docker-rake-commands.sh
     volumes:
       - .:/myapp
     depends_on:
@@ -36,7 +36,7 @@ services:
       - MONGO_HOST=mongo:27017
   test:
     build: .
-    command: ./docker-test-commands.sh
+    command: docker/docker-test-commands.sh
     volumes:
       - .:/myapp
     depends_on:
