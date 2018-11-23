@@ -44,5 +44,16 @@ RSpec.describe "ApiDevelopments", type: :request do
       expect(parsed_body).to include("id"=>object.id.to_s)
     end
   end
+
+  describe "http" do
+    before(:each) { Bar.delete_all }
+    after(:each) { Bar.delete_all }
+
+    it "get request should return ok" do
+      (1..3).each.map {|i| Bar.create(:name => "test#{i}")};
+      response = HTTParty.get("http://localhost:3000/api/foos");
+      expect(response.body).to include("ok")
+  end
+  
   
 end

@@ -29,9 +29,22 @@ module Myapp
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    # MongoDB config and default db setup
     Mongoid.load!('./config/mongoid.yml')
     config.generators {|g| g.orm :active_record}
     # config.generators {|g| g.orm :mongoid}
+
+    # CORS definition
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+
+        resource '/api/*',
+          :headers => :any,
+          :methods => [:get, :post, :put, :delete, :options]
+      
+      end
+    end
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
